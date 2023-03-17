@@ -1,52 +1,100 @@
-<!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<title>Haejin LEE</title>
-        <style type="text/css">
-        A:link { color: black; text-decoration: none;}
-        A:visited { color: black; text-decoration: none;}
-        A:hover { 
-color: yellow; 
-Text-decoration: none;
-animation-name: changeColor; 
-animation-duration: 1s; 
-animation-fill-mode: forwards;
-} 
+	<style>
+		.left-box {background: transparent; float: left; width: 180px; height: 100%;}
+		.right-box {background: transparent} 
+		.changecolor {transition: color 0.2s ease;}
+		#Menu {
+		    list-style: none;
+		    padding: 0;
+		}
 
-@keyframes changeColor {
-from { color: black; } 
-to { color: yellow; }
-}
-        Ul{list-style:none; padding-left:0;}
-        </style>
-<style>
-.left-box {background: #d9e1e2; float: left; width: 180px}
-.right-box {background: #f5dadf} 
-</style>
+		#Menu li a {
+		    text-decoration: none;
+		    color: inherit;
+		}
+	</style>
 </head>
 <body>
-<div class='left-box'>
-	<header>
-		<h1 style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">Haejin LEE</h1>
-	</header>
+	<div class='left-box'>
+		<header>
+			<h1 style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">Haejin LEE</h1>
+		</header>
 
-	<nav>
-		<ul>
-			<li style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;"><a href="page1.html">home</a></li>
-			<li style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;"><a href="page2.html">about</a></li>
-			<li style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;"><a href="page3.html">works</a></li>
-		</ul>
-	</nav>
+		<nav>
+			<ul id="Menu" style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">
+				<li id="Menu01"><a href="page1.html">home</a></li>
+				<li id="Menu02"><a href="page2.html">about</a></li>
+				<li id="Menu03"><a href="page3.html">works</a></li>
+			</ul>
+		</nav>
 
-	<main>
-		<p style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">Instagram</p>
-	</main>
+		<main>
+			<p style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">Instagram</p>
+		</main>
 
-	<footer>
-		<p style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">Tous droits réservés &copy; 2023</p>
-	</footer>
+		<footer>
+			<p style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">Tous droits réservés &copy; 2023</p>
+		</footer>
+	</div>
+
+	<div class='right-box'>
+		<p id="myText">OOOOOOOOOOOOOOOOO</p>
+	</div>
+
+	<script>
+		function randomColor() {
+		  let color = [];
+		  for (let i = 0; i < 3; i++) {
+		    color.push(Math.floor(Math.random() * 256));
+		  }
+		  return 'rgb(' + color.join(', ') + ')';
+		}
+
+		const Menu01 = document.getElementById('Menu01');
+		Menu01.addEventListener("mouseover", function() {
+			Menu01.classList.add('changecolor');
+			Menu01.style.color = randomColor();
+		});
+
+		Menu01.addEventListener("mouseout", function() {
+			Menu01.classList.remove('changecolor');
+			Menu01.style.color = '';
+		});
+
+		const Menu02 = document.getElementById('Menu02');
+		Menu02.addEventListener("mouseover", function() {
+			Menu02.classList.add('changecolor');
+			Menu02.style.color = randomColor();
+		});
+
+		Menu02.addEventListener("mouseout", function() {
+			Menu02.classList.remove('changecolor');
+			Menu02.style.color = '';
+		});
+		const Menu03 = document.getElementById('Menu03');
+		Menu03.addEventListener("mouseover", function() {
+			Menu03.classList.add('changecolor');
+			Menu03.style.color = randomColor();
+		});
+
+		Menu03.addEventListener("mouseout", function() {
+			Menu03.classList.remove('changecolor');
+			Menu03.style.color = '';
+		});
+		var myText = document.getElementById('myText');
+		myText.addEventListener("mouseover", function() {
+			myText.classList.add('changecolor');
+			myText.style.color = randomColor();
+		});
+
+		myText.addEventListener("mouseout", function() {
+			myText.classList.remove('changecolor');
+			myText.style.color = '';
+		});
+	</script>
 </div>
-<div class='right-box'>___</div>
 </body>
 </html>
