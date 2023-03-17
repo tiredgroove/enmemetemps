@@ -4,8 +4,10 @@
 	<title>Haejin LEE</title>
 	<style>
 		.left-box {background: transparent; float: left; width: 180px; height: 100%;}
-		.right-box {background: transparent} 
+		.right-box {background: transparent; width: 100%;
+			height: 100%; margin-left: 180px;} 
 		.changecolor {transition: color 0.2s ease;}
+		
 		#Menu {
 		    list-style: none;
 		    padding: 0;
@@ -15,6 +17,9 @@
 		    text-decoration: none;
 		    color: inherit;
 		}
+iframe {
+  border: none;
+}
 	</style>
 </head>
 <body>
@@ -25,9 +30,9 @@
 
 		<nav>
 			<ul id="Menu" style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: 200;">
-				<li id="Menu01"><a href="page1.html">home</a></li>
-				<li id="Menu02"><a href="page2.html">about</a></li>
-				<li id="Menu03"><a href="page3.html">works</a></li>
+				<li id="Menu01"><a href="#" onclick="loadPage('page1.html');">home</a></li>
+				<li id="Menu02"><a href="#" onclick="loadPage('page2.html');">about</a></li>
+				<li id="Menu03"><a href="#" onclick="loadPage('page3.html');">works</a></li>
 			</ul>
 		</nav>
 
@@ -40,9 +45,7 @@
 		</footer>
 	</div>
 
-	<div class='right-box'>
-		<p id="myText">OOOOOOOOOOOOOOOOO</p>
-	</div>
+	<div class='right-box'><div id="main_page"><iframe src="page1.html" id="myFrame"></iframe></div>
 
 	<script>
 		function randomColor() {
@@ -84,17 +87,13 @@
 			Menu03.classList.remove('changecolor');
 			Menu03.style.color = '';
 		});
-		var myText = document.getElementById('myText');
-		myText.addEventListener("mouseover", function() {
-			myText.classList.add('changecolor');
-			myText.style.color = randomColor();
-		});
 
-		myText.addEventListener("mouseout", function() {
-			myText.classList.remove('changecolor');
-			myText.style.color = '';
-		});
+		function loadPage(url) {
+        		document.getElementById("main_page").innerHTML = '<object type="text/html" data="'+url+'" ></object>';
+    		}
+function loadPage(url) {
+        		document.getElementById("myFrame").src = url;
+    		}
 	</script>
-</div>
 </body>
 </html>
