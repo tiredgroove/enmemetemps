@@ -169,6 +169,10 @@
 function loadPage(url) {
         		document.getElementById("myFrame").src = url;
     		}
+document.addEventListener('contextmenu', function(e) {
+			// prevent right-click menu from appearing
+			e.preventDefault();
+		});
 	</script>
 </body>
 </html>
