@@ -2,13 +2,58 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Empty Page</title>
+	<title>work</title>
 	<style>
 		body {
-			background-color: #fff0b3;
+			background-color: transparent;
+			padding-left: 20px;
+			padding-right: 20px;
 		}
+		h1 {
+			font-size: 18px;
+			font-family: helvetica, sans-serif;
+			font-weight: 200;
+			text-align: left;
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+		p {
+			font-size: 12px;
+			font-family: helvetica, sans-serif;
+			font-weight: 100;
+			text-align: left;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		img {
+			margin-bottom: 30px;
+		}
+	@media only screen and (max-width: 768px) {
+  img {
+    width: 100%;
+  }
+}
 	</style>
+	<script>
+		function zoomImage() {
+			var img = document.getElementById("work-image");
+			if (img.style.width === "500px") {
+				img.style.width = "100%";
+			} else {
+				img.style.width = "500px";
+			}
+		}
+	</script>
 </head>
 <body>
+	<div class='work1'>
+		<h1> jardin en l'air, 2022
+		</h1>
+		<p>le travail a été conçu pour envisager la forme et la couleur ....
+		</p>
+		<img id="work-image" src="img/work/jardinenlair.JPG" width="800" onclick="zoomImage()">
+</div>
+<div>b</div>
+<div>c</div>
 </body>
 </html>
