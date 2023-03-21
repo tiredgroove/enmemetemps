@@ -4,6 +4,14 @@
 	<meta charset="UTF-8">
 	<title>work</title>
 	<style>
+		* {
+		  user-select: none;
+		  -webkit-user-select: none; /* Safari */
+		  -moz-user-select: none; /* Firefox */
+		  -ms-user-select: none; /* Internet Explorer/Edge */
+		  -o-user-select: none; /* Opera */
+		}
+
 		body {
 			background-color: transparent;
 			padding-left: 20px;
@@ -12,7 +20,7 @@
 		h1 {
 			font-size: 18px;
 			font-family: helvetica, sans-serif;
-			font-weight: 200;
+			font-weight: bold;
 			text-align: left;
 			margin-top: 30px;
 			margin-bottom: 30px;
@@ -24,12 +32,13 @@
 			text-align: left;
 			margin-top: 0;
 			margin-bottom: 0;
+			max-width: 300px;
 		}
 		img {
-			margin-bottom: 30px;
+			margin-bottom: 0;
 		}
 		#zoom-box {
-			position: absolute;
+			position: fixed;
 			top: 0;
 			left: 0;
 			width: 100%;
@@ -46,15 +55,45 @@
 			max-width: 100%;
 			max-height: 100%;
 		}
-		@media only screen and (max-width: 768px) {
+		#zoom-box:hover::before {
+  content: "Click to zoom out";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+#zoom-box:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+#zoom-box:hover::before,
+#zoom-box:hover::after {
+  opacity: 1;
+}
+	
+		@media only screen and (max-width: 800px) {
 			img {
-				width: 100%;
+				max-width: 300px;
 			}
 		}
 	</style>
 	<script>
-		function zoomImage() {
-			var img = document.getElementById("work-image");
+		function zoomImage(img) {
 			var zoomBox = document.createElement("div");
 			zoomBox.id = "zoom-box";
 			var zoomImg = document.createElement("img");
@@ -75,15 +114,50 @@
 	</script>
 </head>
 <body>
-	<div class='work1'>
-		<h1> jardin en l'air, 2022
-		</h1>
-		<p>le travail a été conçu pour envisager la forme et la couleur ....
+	<div class='work'>
+		<h1>work</h1>
+		<img id="work-image-1" src="img/work/jardinenlair.JPG" width="300" onclick="zoomImage(this)">
+		<br><br>
+		<p style="font-weight: bold; font-size: 10px; font-style: italic; text-align: right;">jardin en l'air, installation, mixed materials, 2022
 		</p>
-		<img id="work-image" src="img/work/jardinenlair.JPG" width="800" onclick="zoomImage()">
+		<br>
+		<p>le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....
+		</p>
+<br><br><br>
+		<img id="work-image-2" src="img/work/jardinenlair1.JPG" width="100" onclick="zoomImage(this)">
+		<img id="work-image-3" src="img/work/jardinenlair2.JPG" width="100" onclick="zoomImage(this)">
+		<img id="work-image-4" src="img/work/jardinenlair3.JPG" width="100" onclick="zoomImage(this)">
+
+<br><br><br><p>____________________________________</p><br><br><br>
+
+		<img id="work-image-1" src="img/work/feuillesmortes1.JPG" width="300" onclick="zoomImage(this)">
+		<br><br>
+		<p style="font-weight: bold; font-size: 10px; font-style: italic; text-align: right;">feuilles mortes, installation, paper, 2022
+		</p>
+		<br>
+		<p>le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....
+		</p>
+<br><br><br>
+		<img id="work-image-2" src="img/work/feuillesmortes2.JPG" width="100" onclick="zoomImage(this)">
+		<img id="work-image-3" src="img/work/feuillesmortes3.JPG" width="100" onclick="zoomImage(this)">
+		<img id="work-image-4" src="img/work/feuillesmortes4.JPG" width="100" onclick="zoomImage(this)">
+
+<br><br><br><p>____________________________________</p><br><br><br>
+
+		<img id="work-image-1" src="img/work/doppelganger1.JPG" width="300" onclick="zoomImage(this)">
+		<br><br>
+		<p style="font-weight: bold; font-size: 10px; font-style: italic; text-align: right;">Doppelgänger, installation, acrylic paint on carton, 2022
+		</p>
+		<br>
+		<p>le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....le travail a été conçu pour envisager la forme et la couleur ....
+		</p>
+<br><br><br>
+		<img id="work-image-2" src="img/work/doppelganger2.JPG" width="100" onclick="zoomImage(this)">
+
+<br><br><br><p>____________________________________</p><br><br><br>
+
 </div>
-<div>b</div>
-<div>c</div>
+
 <script>
 document.addEventListener('contextmenu', function(e) {
 			// prevent right-click menu from appearing
