@@ -25,7 +25,7 @@ canvas {
 .right-box {
     position: absolute;
     background: transparent; 
-    width: calc(100% - 370px);
+    width: calc(100% - 210px);
     height: calc(100% - 50px);
     top: 20px;
     left: 190px;
