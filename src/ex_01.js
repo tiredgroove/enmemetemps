@@ -29,15 +29,16 @@ if (WEBGL.isWebGLAvailable()) {
 
   //renderer
 	const renderer = new THREE.WebGLRenderer({ antialias: true });
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	// renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize( window.innerWidth, window.innerHeight );
 	//import
   renderer.outputEncoding = THREE.sRGBEncoding;
   document.body.appendChild( renderer.domElement );
 
   //orbitcontrols
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.minDistance = 10;
-  controls.maxDistance = 100;
+  controls.minDistance = 20;
+  controls.maxDistance = 500;
   controls.update();
   
   //skybox
@@ -126,8 +127,7 @@ if (WEBGL.isWebGLAvailable()) {
   const mesh = gltf.scene.children[0];
   //GLTFconst material = new THREE.MeshPhysicalMaterial({
   const material = new THREE.MeshPhongMaterial({
-    // color: 0xcc7a85,
-    color: 0xffffff,
+    color: 0xcc7a85,    
     // envMap: textureCube,
     refractionRatio: 0.985,
     reflectivity: 0.9,

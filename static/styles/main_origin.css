@@ -1,3 +1,4 @@
+/* 내홈페이지 */
 * {
   user-select: none;
   -webkit-user-select: none; /* Safari */
@@ -8,28 +9,22 @@
 
 /* 원래있던거 */
 canvas { 
-  position: relative;
-  display: block;
-  border: none;
+  /* display: block;  */
+  position: auto;
 }
 
 .left-box {
-    position: absolute; 
+    position: fixed; 
     background: white; 
-    width: 150px; 
-    height: 500px;
-    top: 20px;
-    left: 20px;
-    z-index: 1;
+    float: left; 
+    width: 180px; 
+    height: 100%;
 }
 .right-box {
-    position: absolute;
     background: transparent; 
-    width: calc(100% - 370px);
-    height: calc(100% - 50px);
-    top: 20px;
-    left: 190px;
-    z-index: 1;
+    width: auto;
+    height: auto;
+    margin-left: 180px;
 }
 .changecolor {transition: color 0.2s ease;}
 #Menu {
@@ -56,49 +51,49 @@ body {
 footer {
   position: fixed;
   bottom: 0;
-  left: 0px;
+  left: 0;
   right: 0;
   height: 30px;
-  background-color: transparent;
+  background-color: white;
   text-align: left;
   float: left;
-  width: 150px;
+  width: 180px;
 }
 
 @media screen and (max-width: 800px) {
     .left-box {
         position: fixed;
-        width: calc(100% - 40px);
-        height: 150px;
+        width: 100%;
+        height: 100px;
     }
     footer {
         position: fixed;
         Margin-top: 5px;
-        width: 100%;
-        height: 30px;
+width: 100%;
+height: 30px;
     } 
     #Menu {
         display: flex;
         flex-direction: row;
         justify-content: right;
-        padding-right: 20px;
+padding-right: 20px;
     }
     
     #Menu li {
         margin: 0;
-        padding-right: 5px;
-        padding-left: 0;
+padding-right: 5px;
+padding-left: 0;
     }
     
     .right-box {
         position: fixed;
-        margin-top: 170px;
-        left: 20px;
-        Width: calc(100% - 40px);
-        height: calc(100% - 230px);
-    }
-    #instaLink {
-        position: flexible;
-        float: right;
-        padding-right: 25px;
-    }};
+margin-top: 100px;
+        margin-left: 0;
+Width: 100%;
+height: 81%;
+}
+#instaLink {
+position: flexible;
+float: right;
+padding-right: 25px;
+}};
