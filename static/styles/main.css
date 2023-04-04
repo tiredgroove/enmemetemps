@@ -1,0 +1,98 @@
+/* 원래있던거 */
+canvas { 
+  display: block; 
+}
+
+/* 내홈페이지 */
+* {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  -o-user-select: none; /* Opera */
+}
+
+.left-box {
+    position: fixed; 
+    background: white; 
+    float: left; 
+    width: 180px; 
+    height: 100%;
+}
+.right-box {
+    background: transparent; 
+    width: auto;
+    height: auto;
+    margin-left: 180px;
+}
+.changecolor {transition: color 0.2s ease;}
+#Menu {
+    list-style: none;
+    padding: 0;
+}
+
+#Menu li a {
+    text-decoration: none;
+    color: inherit;
+}
+#instaLink {
+    text-decoration: none;
+    color: inherit;
+}
+iframe {
+  border: none; width: 100%; height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background-color: white;
+  text-align: left;
+  float: left;
+  width: 180px;
+}
+
+@media screen and (max-width: 800px) {
+    .left-box {
+        position: fixed;
+        width: 100%;
+        height: 100px;
+    }
+    footer {
+        position: fixed;
+        Margin-top: 5px;
+width: 100%;
+height: 30px;
+    } 
+    #Menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+padding-right: 20px;
+    }
+    
+    #Menu li {
+        margin: 0;
+padding-right: 5px;
+padding-left: 0;
+    }
+    
+    .right-box {
+        position: fixed;
+margin-top: 100px;
+        margin-left: 0;
+Width: 100%;
+height: 81%;
+}
+#instaLink {
+position: flexible;
+float: right;
+padding-right: 25px;
+}};

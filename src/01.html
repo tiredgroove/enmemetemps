@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+  <style>
+    * {
+		  user-select: none;
+		  -webkit-user-select: none; /* Safari */
+		  -moz-user-select: none; /* Firefox */
+		  -ms-user-select: none; /* Internet Explorer/Edge */
+		  -o-user-select: none; /* Opera */
+		}
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .layer_main {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      transform: scaleX(-1);
+      Mix-blend-mode: screen;
+    }
+    .layer_main img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      Object-fit: cover;
+    }
+    .main_img {
+      position: relative;
+      z-index: 0;
+      width: auto;
+      height: auto;
+      overflow: hidden;
+    }
+    .main_img img {
+      display: block;
+      Width: 100%;
+      height: auto;
+        }
+    </style>
+  </head>
+<body>
+
+<div class="layer_main">
+  <img src="img/layer_main.gif">
+</div>
+
+<div class="main_img">
+  <img src="img/main_img.png">
+</div>
+
+<script>
+document.addEventListener('contextmenu', function(e) {
+  // prevent right-click menu from appearing
+  e.preventDefault();
+});
+
+
+</script>
+</body>
+</html>
