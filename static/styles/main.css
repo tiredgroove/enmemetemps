@@ -15,12 +15,25 @@ canvas {
 
 .left-box {
     position: absolute; 
-    background: white; 
+    background: transparent; 
     width: 150px; 
     height: 500px;
     top: 20px;
     left: 20px;
     z-index: 1;
+}
+.topName {
+    font-family: Helvetica, sans-serif; 
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.middleMenu {
+    font-family: Helvetica, sans-serif; 
+    font-size: 13px; 
+    font-weight: 200; 
+    margin-left: 20px;
 }
 .right-box {
     position: absolute;
@@ -72,6 +85,14 @@ footer {
         width: calc(100% - 40px);
         height: 150px;
     }
+    
+    .middleMenu {
+        font-family: Helvetica, sans-serif; 
+        font-size: 13px; 
+        font-weight: 200; 
+        margin-left: 20px;
+    }
+
     footer {
         position: fixed;
         Margin-top: 5px;
