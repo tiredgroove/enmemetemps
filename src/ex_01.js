@@ -20,9 +20,11 @@ if (WEBGL.isWebGLAvailable()) {
   //scene
   const scene = new THREE.Scene();
   // scene.background = textureCube;
-  scene.background = new THREE.Color(0xffffff)
-   
-  	
+  scene.background = new THREE.Color(0xffffff);
+  // scene fog
+  scene.fog = new THREE.FogExp2(0xB9A3E3, 0.005);
+
+
   //camera
   const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.z = 60;
@@ -38,7 +40,9 @@ if (WEBGL.isWebGLAvailable()) {
   //orbitcontrols
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.minDistance = 20;
-  controls.maxDistance = 500;
+  controls.maxDistance = 200;
+  // controls.minPolarAngle = Math.PI / 6;
+  // controls.maxPolarAngle = Math.PI / 1.5;
   controls.update();
   
   //skybox
