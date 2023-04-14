@@ -35,6 +35,9 @@ canvas {
     font-weight: 200; 
     margin-left: 20px;
 }
+.insta_logo {
+    width: 10px;
+}
 .right-box {
     position: absolute;
     background: transparent; 
@@ -88,9 +91,13 @@ footer {
     
     .middleMenu {
         font-family: Helvetica, sans-serif; 
-        font-size: 13px; 
-        font-weight: 200; 
+        font-size: 25px; 
+        font-weight: 400;
         margin-left: 20px;
+    }
+
+    .insta_logo {
+        width: 20px;
     }
 
     footer {

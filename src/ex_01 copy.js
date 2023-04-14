@@ -5,19 +5,29 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 
 if (WEBGL.isWebGLAvailable()) {
 
+  //background_skycube
+  // const r = '3dimg/skyboxex/';
+  // const urls = [
+  //   r + 'px.png',
+  //   r + 'nx.png',
+  //   r + 'py.png',
+  //   r + 'ny.png',
+  //   r + 'pz.png',
+  //   r + 'nz.png',
+  // ];
+  // const textureCube = new THREE.CubeTextureLoader().load(urls);
+  // textureCube.mapping = THREE.CubeRefractionMapping;  
   //scene
   const scene = new THREE.Scene();
   // scene.background = textureCube;
   scene.background = new THREE.Color(0xffffff);
   // scene fog
-  scene.fog = new THREE.FogExp2(0xffffff, 0.0025);
+  scene.fog = new THREE.FogExp2(0xB9A3E3, 0.005);
 
 
   //camera
   const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
   camera.position.z = 60;
-  camera.position.x = 30;
-  camera.position.y = 30;
 
   //renderer
 	const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -30,9 +40,9 @@ if (WEBGL.isWebGLAvailable()) {
   //orbitcontrols
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.minDistance = 20;
-  controls.maxDistance = 100;
-  controls.minPolarAngle = 1;
-  controls.maxPolarAngle = Math.PI / 1.5;
+  controls.maxDistance = 200;
+  // controls.minPolarAngle = Math.PI / 6;
+  // controls.maxPolarAngle = Math.PI / 1.5;
   controls.update();
   
   //skybox
@@ -79,6 +89,11 @@ if (WEBGL.isWebGLAvailable()) {
   }
 
   const skyGeo = new THREE.BoxGeometry(500,500,500);
+  // const skyMat = new THREE.MeshStandardMaterial({
+  //   color: 0x333333,
+  //   // map: skyTexture,
+  // });
+  // skyMat.side = THREE.BackSide;
   const sky = new THREE.Mesh(skyGeo, skyMatArray);
   scene.add(sky);
 
@@ -89,33 +104,49 @@ if (WEBGL.isWebGLAvailable()) {
   lightsky.position.set(0, 0, 0);
   scene.add(lightsky);
 
-  const ambientLight = new THREE.AmbientLight( 0x000000, 5);
+
+  const ambientLight = new THREE.AmbientLight( 0x000000 );
 	scene.add( ambientLight );
 
-/////////////////////////////////////////////
+	// const light1 = new THREE.PointLight( 0xffffff, 1, 0 );
+	// light1.position.set( 0, 100, 0 );
+	// scene.add( light1 );
+
+	// const light2 = new THREE.PointLight( 0xffffff, 1, 0 );
+	// light2.position.set( 100, 100, 100 );
+	// scene.add( light2 );
+
+	// const light3 = new THREE.PointLight( 0xffffff, 1, 0 );
+	// light3.position.set( - 100, - 100, - 100 );
+	// scene.add( light3 );
+
   //GLTF
   const loader = new GLTFLoader();
   loader.load('3dimg/feuilles.gltf',
   function( gltf ){
+  //GLTFsize and position
   gltf.scene.scale.set(2, 2, 2);
-  gltf.scene.position.set(-5, -40, -10);
+  gltf.scene.position.set(0, -20, -10);
+  //GLTFmaterial
   const mesh = gltf.scene.children[0];
+  //GLTFconst material = new THREE.MeshPhysicalMaterial({
   const material = new THREE.MeshPhongMaterial({
-    color: 0xcc7a85,
+    color: 0xcc7a85,    
+    // envMap: textureCube,
     refractionRatio: 0.985,
-    reflectivity: 0.5,
+    reflectivity: 0.9,
     emissive: 0xcc7a85,
     clearcoat: 0.3,
-    roughness: 0.5,
-    metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,
+    roughness: 0.1,
+    metalness: 0.5,    
   });
   mesh.material = material;
+  //GLTF장면추가
   scene.add( gltf.scene );
-
+  //GLTF내부에서 애니메이션
   function animate(){
-  requestAnimationFrame(animate)
+  requestAnimationFrame(animate) //1초에 60번 실행됨.
+
   //GLTF회전
   gltf.scene.rotation.y += 0.001;
   renderer.render(scene,camera);  
@@ -123,102 +154,48 @@ if (WEBGL.isWebGLAvailable()) {
   animate();
   });
 
-  //GLTF01
-  const loader01 = new GLTFLoader();
-  loader01.load('3dimg/feuilles.gltf',
-  function( gltf01 ){
-  gltf01.scene.scale.set(2, 2, 2);
-  gltf01.scene.position.set(5, -30, -20);
-  const mesh01 = gltf01.scene.children[0];
-  const material01 = new THREE.MeshPhongMaterial({
-    color: 0xe73773,
-    refractionRatio: 0.985,
-    reflectivity: 0.5,
-    emissive: 0xe73773,
+	//mesh
+  const geometry01 = new THREE.TorusKnotGeometry( 5, 1 ,100 ,20 ,2 ,3 );
+	const material01 = new THREE.MeshPhysicalMaterial( { 
+    color: 0xcc7a85,
+    emissive: 0xcc7a85,
     clearcoat: 0.3,
-    roughness: 0.5,
+    roughness: 0.1,
     metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,
-  });
-  mesh01.material = material01;
-  scene.add( gltf01.scene );
+    reflectivity: 0.8,
+    specular: 0xffffff,
+  } );
+	const obj01 = new THREE.Mesh( geometry01, material01 );
+	obj01.position.x = 10;
+  scene.add( obj01 );
 
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf01.scene.rotation.y += 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-
-  //GLTF02
-  const loader02 = new GLTFLoader();
-  loader02.load('3dimg/feuilles.gltf',
-  function( gltf02 ){
-  gltf02.scene.scale.set(2, 2, 2);
-  gltf02.scene.position.set(10, -20, 0);
-  const mesh02 = gltf02.scene.children[0];
-  const material02 = new THREE.MeshPhongMaterial({
-    color: 0x5aacbe,
-    refractionRatio: 0.985,
-    reflectivity: 0.5,
-    emissive: 0x5aacbe,
+	//mesh
+  const geometry02 = new THREE.TorusKnotGeometry( 5, 1 ,100 ,20 ,2 ,3 );
+	const material02 = new THREE.MeshPhysicalMaterial( { 
+    color: 0xcc7a85,
+    emissive: 0xcc7a85,
     clearcoat: 0.3,
-    roughness: 0.5,
+    roughness: 0.1,
     metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,    
-  });
-  mesh02.material = material02;
-  scene.add( gltf02.scene );
+    reflectivity: 0.7,
+    specular: 0xffffff,
 
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf02.scene.rotation.y -= 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-
-  //GLTF03
-  const loader03 = new GLTFLoader();
-  loader03.load('3dimg/feuilles.gltf',
-  function( gltf03 ){
-  gltf03.scene.scale.set(2.2, 2.2, 2.2);
-  gltf03.scene.position.set(-15, -25, 5);
-  const mesh03 = gltf03.scene.children[0];
-  const material03 = new THREE.MeshPhongMaterial({
-    color: 0x576c52,
-    refractionRatio: 0.985,
-    reflectivity: 0.5,
-    emissive: 0x576c52,
-    clearcoat: 0.3,
-    roughness: 0.5,
-    metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,    
-  });
-  mesh03.material = material03;
-  scene.add( gltf03.scene );
-
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf03.scene.rotation.y -= 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-///////////////////////////////////////
+  } );
+	const obj02 = new THREE.Mesh( geometry02, material02 );
+	obj02.position.x = -10;
+  scene.add( obj02 );
+ 
   //animation
 	function animate() {
 	requestAnimationFrame( animate );
 
-  controls.update();
+	obj01.rotation.x += 0.001;
+	obj01.rotation.y += 0.001;
+	obj02.rotation.x += 0.001;
+	obj02.rotation.y += 0.001;
 
+  controls.update();
+		  
   renderer.render( scene, camera );
 	}
 
