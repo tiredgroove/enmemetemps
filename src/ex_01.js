@@ -10,7 +10,7 @@ if (WEBGL.isWebGLAvailable()) {
   // scene.background = textureCube;
   scene.background = new THREE.Color(0xffffff);
   // scene fog
-  scene.fog = new THREE.FogExp2(0xffffff, 0.0025);
+  // scene.fog = new THREE.FogExp2(0xffffff, 0.0025);
 
 
   //camera
@@ -36,60 +36,60 @@ if (WEBGL.isWebGLAvailable()) {
   controls.update();
   
   //skybox
-  const skyMatArray = []
-  const skyTexture_px = new THREE.TextureLoader().load('3dimg/skyboxex/px.png');
-  const skyTexture_nx = new THREE.TextureLoader().load('3dimg/skyboxex/nx.png');
-  const skyTexture_py = new THREE.TextureLoader().load('3dimg/skyboxex/py.png');
-  const skyTexture_ny = new THREE.TextureLoader().load('3dimg/skyboxex/ny.png');
-  const skyTexture_pz = new THREE.TextureLoader().load('3dimg/skyboxex/pz.png');
-  const skyTexture_nz = new THREE.TextureLoader().load('3dimg/skyboxex/nz.png');
-  skyMatArray.push(
-    new THREE.MeshStandardMaterial({
-      map: skyTexture_px,
-    })
-  )
-  skyMatArray.push(
-    new THREE.MeshStandardMaterial({
-      map: skyTexture_nx,
-    })
-  )
-  skyMatArray.push(
-    new THREE.MeshStandardMaterial({
-      map: skyTexture_py,
-    })
-  )
-  skyMatArray.push(
-    new THREE.MeshStandardMaterial({
-      map: skyTexture_ny,
-    })
-  )
-  skyMatArray.push(
-    new THREE.MeshStandardMaterial({
-      map: skyTexture_pz,
-    })
-  )
-  skyMatArray.push(
-    new THREE.MeshStandardMaterial({
-      map: skyTexture_nz,
-    })
-  )
+  // const skyMatArray = []
+  // const skyTexture_px = new THREE.TextureLoader().load('3dimg/skyboxex/px.png');
+  // const skyTexture_nx = new THREE.TextureLoader().load('3dimg/skyboxex/nx.png');
+  // const skyTexture_py = new THREE.TextureLoader().load('3dimg/skyboxex/py.png');
+  // const skyTexture_ny = new THREE.TextureLoader().load('3dimg/skyboxex/ny.png');
+  // const skyTexture_pz = new THREE.TextureLoader().load('3dimg/skyboxex/pz.png');
+  // const skyTexture_nz = new THREE.TextureLoader().load('3dimg/skyboxex/nz.png');
+  // skyMatArray.push(
+  //   new THREE.MeshStandardMaterial({
+  //     map: skyTexture_px,
+  //   })
+  // )
+  // skyMatArray.push(
+  //   new THREE.MeshStandardMaterial({
+  //     map: skyTexture_nx,
+  //   })
+  // )
+  // skyMatArray.push(
+  //   new THREE.MeshStandardMaterial({
+  //     map: skyTexture_py,
+  //   })
+  // )
+  // skyMatArray.push(
+  //   new THREE.MeshStandardMaterial({
+  //     map: skyTexture_ny,
+  //   })
+  // )
+  // skyMatArray.push(
+  //   new THREE.MeshStandardMaterial({
+  //     map: skyTexture_pz,
+  //   })
+  // )
+  // skyMatArray.push(
+  //   new THREE.MeshStandardMaterial({
+  //     map: skyTexture_nz,
+  //   })
+  // )
 
-  for (let i = 0; i < 6; i++){
-    skyMatArray[i].side = THREE.BackSide
-  }
+  // for (let i = 0; i < 6; i++){
+  //   skyMatArray[i].side = THREE.BackSide
+  // }
 
-  const skyGeo = new THREE.BoxGeometry(500,500,500);
-  const sky = new THREE.Mesh(skyGeo, skyMatArray);
-  scene.add(sky);
+  // const skyGeo = new THREE.BoxGeometry(500,500,500);
+  // const sky = new THREE.Mesh(skyGeo, skyMatArray);
+  // scene.add(sky);
 
 
 
   //import light
-  const lightsky = new THREE.PointLight(0xffffff, 1, 0);
-  lightsky.position.set(0, 0, 0);
-  scene.add(lightsky);
+  // const lightsky = new THREE.PointLight(0xffffff, 1, 0);
+  // lightsky.position.set(0, 0, 0);
+  // scene.add(lightsky);
 
-  const ambientLight = new THREE.AmbientLight( 0x000000, 5);
+  const ambientLight = new THREE.AmbientLight( 0x000000, 1);
 	scene.add( ambientLight );
 
 /////////////////////////////////////////////
@@ -100,16 +100,10 @@ if (WEBGL.isWebGLAvailable()) {
   gltf.scene.scale.set(2, 2, 2);
   gltf.scene.position.set(-5, -40, -10);
   const mesh = gltf.scene.children[0];
-  const material = new THREE.MeshPhongMaterial({
-    color: 0xcc7a85,
-    refractionRatio: 0.985,
-    reflectivity: 0.5,
-    emissive: 0xcc7a85,
-    clearcoat: 0.3,
-    roughness: 0.5,
-    metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,
+    const material = new THREE.MeshBasicMaterial({
+    color: 0xff4f7b,
+    // transparent: true,
+    // opacity: 0.7,
   });
   mesh.material = material;
   scene.add( gltf.scene );
@@ -130,16 +124,10 @@ if (WEBGL.isWebGLAvailable()) {
   gltf01.scene.scale.set(2, 2, 2);
   gltf01.scene.position.set(5, -30, -20);
   const mesh01 = gltf01.scene.children[0];
-  const material01 = new THREE.MeshPhongMaterial({
-    color: 0xe73773,
-    refractionRatio: 0.985,
-    reflectivity: 0.5,
-    emissive: 0xe73773,
-    clearcoat: 0.3,
-    roughness: 0.5,
-    metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,
+  const material01 = new THREE.MeshBasicMaterial({
+    color: 0xffed2b,
+    // transparent: true,
+    // opacity: 0.7,
   });
   mesh01.material = material01;
   scene.add( gltf01.scene );
@@ -160,16 +148,10 @@ if (WEBGL.isWebGLAvailable()) {
   gltf02.scene.scale.set(2, 2, 2);
   gltf02.scene.position.set(10, -20, 0);
   const mesh02 = gltf02.scene.children[0];
-  const material02 = new THREE.MeshPhongMaterial({
-    color: 0x5aacbe,
-    refractionRatio: 0.985,
-    reflectivity: 0.5,
-    emissive: 0x5aacbe,
-    clearcoat: 0.3,
-    roughness: 0.5,
-    metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,    
+  const material02 = new THREE.MeshBasicMaterial({
+    color: 0x4fffe2,
+    // transparent: true,
+    // opacity: 0.7,    
   });
   mesh02.material = material02;
   scene.add( gltf02.scene );
@@ -190,16 +172,10 @@ if (WEBGL.isWebGLAvailable()) {
   gltf03.scene.scale.set(2.2, 2.2, 2.2);
   gltf03.scene.position.set(-15, -25, 5);
   const mesh03 = gltf03.scene.children[0];
-  const material03 = new THREE.MeshPhongMaterial({
-    color: 0x576c52,
-    refractionRatio: 0.985,
-    reflectivity: 0.5,
-    emissive: 0x576c52,
-    clearcoat: 0.3,
-    roughness: 0.5,
-    metalness: 0.5,
-    transparent: true,
-    opacity: 0.7,    
+  const material03 = new THREE.MeshBasicMaterial({
+    color: 0x1543c2,
+    // transparent: true,
+    // opacity: 0.7,    
   });
   mesh03.material = material03;
   scene.add( gltf03.scene );
