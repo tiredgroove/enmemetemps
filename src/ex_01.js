@@ -101,7 +101,7 @@ if (WEBGL.isWebGLAvailable()) {
   gltf.scene.position.set(-5, -40, -10);
   const mesh = gltf.scene.children[0];
     const material = new THREE.MeshBasicMaterial({
-    color: 0xff4f7b,
+    color: 0xf71b6c,
     // transparent: true,
     // opacity: 0.7,
   });
@@ -184,6 +184,54 @@ if (WEBGL.isWebGLAvailable()) {
   requestAnimationFrame(animate)
   //GLTF회전
   gltf03.scene.rotation.y -= 0.001;
+  renderer.render(scene,camera);  
+  }
+  animate();
+  });
+
+  //GLTF04
+  const loader04 = new GLTFLoader();
+  loader04.load('3dimg/feuilles.gltf',
+  function( gltf04 ){
+  gltf04.scene.scale.set(3, 3, 3);
+  gltf04.scene.position.set(-10, -30, -15);
+  const mesh04 = gltf04.scene.children[0];
+  const material04 = new THREE.MeshBasicMaterial({
+    color: 0xfaf0d2,
+    // transparent: true,
+    // opacity: 0.7,    
+  });
+  mesh04.material = material04;
+  scene.add( gltf04.scene );
+
+  function animate(){
+  requestAnimationFrame(animate)
+  //GLTF회전
+  gltf04.scene.rotation.y -= 0.001;
+  renderer.render(scene,camera);  
+  }
+  animate();
+  });
+
+  //GLTF05
+  const loader05 = new GLTFLoader();
+  loader05.load('3dimg/feuilles.gltf',
+  function( gltf05 ){
+  gltf05.scene.scale.set(3, 3, 3);
+  gltf05.scene.position.set(5, -30, -25);
+  const mesh05 = gltf05.scene.children[0];
+  const material05 = new THREE.MeshBasicMaterial({
+    color: 0x4d9659,
+    // transparent: true,
+    // opacity: 0.7,    
+  });
+  mesh05.material = material05;
+  scene.add( gltf05.scene );
+
+  function animate(){
+  requestAnimationFrame(animate)
+  //GLTF회전
+  gltf05.scene.rotation.y -= 0.001;
   renderer.render(scene,camera);  
   }
   animate();
