@@ -1,31 +1,156 @@
 import * as THREE from 'three'
 import { WEBGL } from './webgl'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 
 if (WEBGL.isWebGLAvailable()) {
+//////
+const scene = new THREE.Scene();
+scene.background = new THREE.Color( 0xffffff );
+scene.fog = new THREE.Fog( 0xffffff, 2000, 3500 );
 
-  //scene
-  const scene = new THREE.Scene();
-  // scene.background = textureCube;
-  scene.background = new THREE.Color(0xffffff);
-  // scene fog
-  // scene.fog = new THREE.FogExp2(0xffffff, 0.0025);
+const camera = new THREE.PerspectiveCamera( 27, window.innerWidth / window.innerHeight, 1, 3500 );
+camera.position.z = 250;
 
+const renderer = new THREE.WebGLRenderer();
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.outputEncoding = THREE.sRGBEncoding;
+document.body.appendChild( renderer.domElement );
 
-  //camera
-  const camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  camera.position.z = 60;
-  camera.position.x = 30;
-  camera.position.y = 30;
+const ambientLight = new THREE.AmbientLight( 0x000000, 1);
+scene.add( ambientLight );
 
-  //renderer
-	const renderer = new THREE.WebGLRenderer({ antialias: true });
-	// renderer.setSize( window.innerWidth, window.innerHeight );
-  renderer.setSize( window.innerWidth, window.innerHeight );
-	//import
-  renderer.outputEncoding = THREE.sRGBEncoding;
-  document.body.appendChild( renderer.domElement );
+const light1 = new THREE.DirectionalLight( 0xffffff, 0.5 );
+light1.position.set( 1, 1, 1 );
+scene.add( light1 );
+
+const light2 = new THREE.DirectionalLight( 0xffffff, 1.5 );
+light2.position.set( 0, - 1, 0 );
+scene.add( light2 );
+
+const triangles = 500000;
+///
+const geometry = new THREE.BufferGeometry();
+
+const positions = [];
+const normals = [];
+const colors = [];
+
+const color = new THREE.Color();
+
+const n = 800, n2 = n / 2;	// triangles spread in the cube
+const d = 12, d2 = d / 2;	// individual triangle size
+
+const pA = new THREE.Vector3();
+const pB = new THREE.Vector3();
+const pC = new THREE.Vector3();
+
+const cb = new THREE.Vector3();
+const ab = new THREE.Vector3();
+
+for ( let i = 0; i < triangles; i ++ ) {
+
+// positions
+
+const x = Math.random() * n - n2;
+const y = Math.random() * n - n2;
+const z = Math.random() * n - n2;
+
+const ax = x + Math.random() * d - d2;
+const ay = y + Math.random() * d - d2;
+const az = z + Math.random() * d - d2;
+
+const bx = x + Math.random() * d - d2;
+const by = y + Math.random() * d - d2;
+const bz = z + Math.random() * d - d2;
+
+const cx = x + Math.random() * d - d2;
+const cy = y + Math.random() * d - d2;
+const cz = z + Math.random() * d - d2;
+
+positions.push( ax, ay, az );
+positions.push( bx, by, bz );
+positions.push( cx, cy, cz );
+
+// flat face normals
+
+pA.set( ax, ay, az );
+pB.set( bx, by, bz );
+pC.set( cx, cy, cz );
+
+cb.subVectors( pC, pB );
+ab.subVectors( pA, pB );
+cb.cross( ab );
+
+cb.normalize();
+
+const nx = cb.x;
+const ny = cb.y;
+const nz = cb.z;
+
+normals.push( nx * 32767, ny * 32767, nz * 32767 );
+normals.push( nx * 32767, ny * 32767, nz * 32767 );
+normals.push( nx * 32767, ny * 32767, nz * 32767 );
+
+// colors
+
+const vx = ( x / n ) + 0.5;
+const vy = ( y / n ) + 0.5;
+const vz = ( z / n ) + 0.5;
+
+color.setRGB( vx, vy, vz );
+
+colors.push( color.r * 255, color.g * 255, color.b * 255 );
+colors.push( color.r * 255, color.g * 255, color.b * 255 );
+colors.push( color.r * 255, color.g * 255, color.b * 255 );
+
+}
+
+const positionAttribute = new THREE.Float32BufferAttribute( positions, 3 );
+const normalAttribute = new THREE.Int16BufferAttribute( normals, 3 );
+const colorAttribute = new THREE.Uint8BufferAttribute( colors, 3 );
+
+normalAttribute.normalized = true; // this will map the buffer values to 0.0f - +1.0f in the shader
+colorAttribute.normalized = true;
+
+geometry.setAttribute( 'position', positionAttribute );
+geometry.setAttribute( 'normal', normalAttribute );
+geometry.setAttribute( 'color', colorAttribute );
+
+geometry.computeBoundingSphere();
+////////
+const material = new THREE.MeshPhongMaterial( {
+  color: 0xaaaaaa, 
+  specular: 0xffffff, 
+  shininess: 250,
+	side: THREE.DoubleSide, 
+  vertexColors: true,
+} );
+
+const mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
+////////
+
+	function animate() {
+  requestAnimationFrame( animate );
+  
+  // function render() {
+  const time = Date.now() * 0.001;
+  
+  mesh.rotation.x = time * 0.025;
+	mesh.rotation.y = time * 0.005;
+
+	renderer.render( scene, camera );
+  }
+
+  animate();
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+  }
+  window.addEventListener( 'resize', onWindowResize );
 
   //orbitcontrols
   const controls = new OrbitControls(camera, renderer.domElement);
@@ -34,228 +159,6 @@ if (WEBGL.isWebGLAvailable()) {
   controls.minPolarAngle = 1;
   controls.maxPolarAngle = Math.PI / 1.5;
   controls.update();
-  
-  //skybox
-  // const skyMatArray = []
-  // const skyTexture_px = new THREE.TextureLoader().load('3dimg/skyboxex/px.png');
-  // const skyTexture_nx = new THREE.TextureLoader().load('3dimg/skyboxex/nx.png');
-  // const skyTexture_py = new THREE.TextureLoader().load('3dimg/skyboxex/py.png');
-  // const skyTexture_ny = new THREE.TextureLoader().load('3dimg/skyboxex/ny.png');
-  // const skyTexture_pz = new THREE.TextureLoader().load('3dimg/skyboxex/pz.png');
-  // const skyTexture_nz = new THREE.TextureLoader().load('3dimg/skyboxex/nz.png');
-  // skyMatArray.push(
-  //   new THREE.MeshStandardMaterial({
-  //     map: skyTexture_px,
-  //   })
-  // )
-  // skyMatArray.push(
-  //   new THREE.MeshStandardMaterial({
-  //     map: skyTexture_nx,
-  //   })
-  // )
-  // skyMatArray.push(
-  //   new THREE.MeshStandardMaterial({
-  //     map: skyTexture_py,
-  //   })
-  // )
-  // skyMatArray.push(
-  //   new THREE.MeshStandardMaterial({
-  //     map: skyTexture_ny,
-  //   })
-  // )
-  // skyMatArray.push(
-  //   new THREE.MeshStandardMaterial({
-  //     map: skyTexture_pz,
-  //   })
-  // )
-  // skyMatArray.push(
-  //   new THREE.MeshStandardMaterial({
-  //     map: skyTexture_nz,
-  //   })
-  // )
-
-  // for (let i = 0; i < 6; i++){
-  //   skyMatArray[i].side = THREE.BackSide
-  // }
-
-  // const skyGeo = new THREE.BoxGeometry(500,500,500);
-  // const sky = new THREE.Mesh(skyGeo, skyMatArray);
-  // scene.add(sky);
-
-
-
-  //import light
-  // const lightsky = new THREE.PointLight(0xffffff, 1, 0);
-  // lightsky.position.set(0, 0, 0);
-  // scene.add(lightsky);
-
-  const ambientLight = new THREE.AmbientLight( 0x000000, 1);
-	scene.add( ambientLight );
-
-/////////////////////////////////////////////
-  //GLTF
-  const loader = new GLTFLoader();
-  loader.load('3dimg/feuilles.gltf',
-  function( gltf ){
-  gltf.scene.scale.set(2, 2, 2);
-  gltf.scene.position.set(-5, -40, -10);
-  const mesh = gltf.scene.children[0];
-    const material = new THREE.MeshBasicMaterial({
-    color: 0xf71b6c,
-    // transparent: true,
-    // opacity: 0.7,
-  });
-  mesh.material = material;
-  scene.add( gltf.scene );
-
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf.scene.rotation.y += 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-
-  //GLTF01
-  const loader01 = new GLTFLoader();
-  loader01.load('3dimg/feuilles.gltf',
-  function( gltf01 ){
-  gltf01.scene.scale.set(2, 2, 2);
-  gltf01.scene.position.set(5, -30, -20);
-  const mesh01 = gltf01.scene.children[0];
-  const material01 = new THREE.MeshBasicMaterial({
-    color: 0xffed2b,
-    // transparent: true,
-    // opacity: 0.7,
-  });
-  mesh01.material = material01;
-  scene.add( gltf01.scene );
-
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf01.scene.rotation.y += 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-
-  //GLTF02
-  const loader02 = new GLTFLoader();
-  loader02.load('3dimg/feuilles.gltf',
-  function( gltf02 ){
-  gltf02.scene.scale.set(2, 2, 2);
-  gltf02.scene.position.set(10, -20, 0);
-  const mesh02 = gltf02.scene.children[0];
-  const material02 = new THREE.MeshBasicMaterial({
-    color: 0x4fffe2,
-    // transparent: true,
-    // opacity: 0.7,    
-  });
-  mesh02.material = material02;
-  scene.add( gltf02.scene );
-
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf02.scene.rotation.y -= 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-
-  //GLTF03
-  const loader03 = new GLTFLoader();
-  loader03.load('3dimg/feuilles.gltf',
-  function( gltf03 ){
-  gltf03.scene.scale.set(2.2, 2.2, 2.2);
-  gltf03.scene.position.set(-15, -25, 5);
-  const mesh03 = gltf03.scene.children[0];
-  const material03 = new THREE.MeshBasicMaterial({
-    color: 0x1543c2,
-    // transparent: true,
-    // opacity: 0.7,    
-  });
-  mesh03.material = material03;
-  scene.add( gltf03.scene );
-
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf03.scene.rotation.y -= 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-
-  //GLTF04
-  const loader04 = new GLTFLoader();
-  loader04.load('3dimg/feuilles.gltf',
-  function( gltf04 ){
-  gltf04.scene.scale.set(3, 3, 3);
-  gltf04.scene.position.set(-10, -30, -15);
-  const mesh04 = gltf04.scene.children[0];
-  const material04 = new THREE.MeshBasicMaterial({
-    color: 0xfaf0d2,
-    // transparent: true,
-    // opacity: 0.7,    
-  });
-  mesh04.material = material04;
-  scene.add( gltf04.scene );
-
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf04.scene.rotation.y -= 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-
-  //GLTF05
-  const loader05 = new GLTFLoader();
-  loader05.load('3dimg/feuilles.gltf',
-  function( gltf05 ){
-  gltf05.scene.scale.set(3, 3, 3);
-  gltf05.scene.position.set(5, -30, -25);
-  const mesh05 = gltf05.scene.children[0];
-  const material05 = new THREE.MeshBasicMaterial({
-    color: 0x4d9659,
-    // transparent: true,
-    // opacity: 0.7,    
-  });
-  mesh05.material = material05;
-  scene.add( gltf05.scene );
-
-  function animate(){
-  requestAnimationFrame(animate)
-  //GLTF회전
-  gltf05.scene.rotation.y -= 0.001;
-  renderer.render(scene,camera);  
-  }
-  animate();
-  });
-///////////////////////////////////////
-  //animation
-	function animate() {
-	requestAnimationFrame( animate );
-
-  controls.update();
-
-  renderer.render( scene, camera );
-	}
-
-	animate();
-
-  //반응형
-  function onWindowResize(){
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
-  window.addEventListener('resize', onWindowResize);
-
 
 } else {
   var warning = WEBGL.getWebGLErrorMessage()
