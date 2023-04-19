@@ -253,7 +253,7 @@ footer {
         margin-top: 140px;
         left: 20px;
         Width: calc(100% - 40px);
-        height: calc(100% - 200px);
+        height: calc(100% - 190px);
     }
     #instaLink {
         position: flexible;
