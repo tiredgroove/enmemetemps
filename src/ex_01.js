@@ -7,7 +7,6 @@ if (WEBGL.isWebGLAvailable()) {
     ///scene
 	const scene = new THREE.Scene();
 	scene.background = new THREE.Color( 0xffffff );
-	scene.fog = new THREE.FogExp2( 0xe3ff4b, 0.002 );
     //camera
 	const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10 );
 	camera.position.z = 3;
@@ -18,7 +17,7 @@ if (WEBGL.isWebGLAvailable()) {
 	renderer.outputEncoding = THREE.sRGBEncoding;
 	document.body.appendChild( renderer.domElement );
 
-		// geometry
+	// geometry
   const geometry = new THREE.InstancedBufferGeometry();
 	
   const vector = new THREE.Vector4();
@@ -112,11 +111,11 @@ if (WEBGL.isWebGLAvailable()) {
 	const time = performance.now();
     const object = scene.children[ 0 ];
 		
-    object.rotation.y = time * 0.00005;
-	object.rotation.x = time * 0.00005;
-	object.rotation.z = time * 0.00005;
+    object.rotation.y = time * 0.000025;
+	object.rotation.x = time * 0.000025;
+	object.rotation.z = time * 0.000025;
 	
-	object.material.uniforms[ 'time' ].value = time * 0.0025;
+	object.material.uniforms[ 'time' ].value = time * 0.0005;
 	object.material.uniforms[ 'sineTime' ].value = Math.sin( object.material.uniforms[ 'time' ].value * 0.05 );
 
     renderer.render( scene, camera );

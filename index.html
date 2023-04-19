@@ -15,17 +15,20 @@
       <header>
         <h1 class="topName">Haejin LEE</h1>
       </header>  
-      <nav class="middleMenu">
-        <ul id="Menu">
-          <li id="Menu01"><a href="#" onclick="loadPage('src/01.html');">home</a></li>
-          <li id="Menu02"><a href="#" onclick="loadPage('src/02.html');">about</a></li>
-          <li id="Menu03"><a href="#" onclick="loadPage('src/03.html');">work</a></li>
-          <li id="Menu04"><a href="#" onclick="loadPage('src/04.html');">etc</a></li>
-        </ul>
-        <p>
-          <a href="https://www.instagram.com/tiredgroove" id="instaLink" target="_blank"><img src="src/img/Instagram_logo_2016.svg.png" class="insta_logo"> Instagram</a>
-        </p>
-      </nav>
+      <div class="middleMenu">
+        <div id="Menu" class="toggle">
+          <span id="Menu01" class="hidden"><a href="#" onclick="loadPage('src/01.html');">home</a></span>
+          <br>
+          <span id="Menu02" class="hidden"><a href="#" onclick="loadPage('src/02.html');">about</a></span>
+          <br>
+          <span id="Menu03" class="hidden"><a href="#" onclick="loadPage('src/03.html');">work</a></span>
+          <br>
+          <span id="Menu04" class="hidden"><a href="#" onclick="loadPage('src/04.html');">etc</a></span>
+          <span class="hidden">
+            <a href="https://www.instagram.com/tiredgroove" id="instaLink" target="_blank"><img src="src/img/Instagram_logo_2016.svg.png" class="insta_logo"> Instagram</a>
+          </span>
+        </div>
+      </div>
       <main>
       </main>
       <footer>
@@ -41,6 +44,16 @@
       OAuth 사용자 암호:
       show -->
     </div>
+    <!-- jquery for menu -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(".toggle").on("click", function () {
+       $(".left-box").toggleClass("expanded");
+       $("span").toggleClass("hidden");
+       $(".middleMenu , .toggle").toggleClass("close");
+     });
+     
+       </script>
 <!-- shader -->
 <script id="vertexShader" type="x-shader/x-vertex">
   precision highp float;
@@ -86,7 +99,7 @@
   void main() {
 
     vec4 color = vec4( vColor );
-    color.r += sin( vPosition.x * 10.0 + time ) * 0.5;
+    color.r += sin( vPosition.x * 10.0 + time ) * 0.05;
 
     gl_FragColor = color;
 
