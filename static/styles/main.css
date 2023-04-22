@@ -164,17 +164,98 @@ body {
   padding: 0;
   scroll-behavior: smooth;
 }
-footer {
+.first_footer {
   position: fixed;
   bottom: 0;
-  left: 0px;
+  left: 0;
   right: 0;
   height: 30px;
   background-color: transparent;
   text-align: left;
   float: left;
   width: 150px;
+  margin-left: 20px;
 }
+.second_footer { 
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 150px;
+  height: auto;
+  overflow: visible;
+  background-color: transparent;
+  /* background-color: white; */
+  text-align: left;
+  float: left;
+  margin-left: 20px;
+}
+/* audioplaybutton */
+.button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border: 2px solid black;
+  background: radial-gradient( rgba(255, 0, 128, 0.8) 60%, rgba(255, 255, 255, 1) 62%);
+  border-radius: 50%;
+  box-shadow: 0px 0px 25px 3px rgba(255, 0, 128, 0.8);
+}
+.button--play {
+  border-radius: 50%;
+}
+.button--play .button__shape {
+  width: 5px;
+  height: 15px;
+  background: black;
+  transition: 0.3s ease-in-out;
+}
+.button--play .button__shape--one {
+  -webkit-clip-path: polygon(0 0, 100% 25%, 100% 75%, 0% 100%);
+  transform: translateX(1.5px);
+}
+.button--play .button__shape--two {
+  -webkit-clip-path: polygon(0 25%, 100% 50%, 100% 50%, 0 75%);
+  transform: translateX(1.4px);
+}
+.button--play.button--active .button__shape--one {
+  -webkit-clip-path: polygon(0 15%, 50% 15%, 50% 85%, 0% 85%);
+  transform: translateX(0px);
+}
+.button--play.button--active .button__shape--two {
+  -webkit-clip-path: polygon(50% 15%, 100% 15%, 100% 85%, 50% 85%);
+  transform: translateX(0px);
+}
+
+/* audioplaybutton */
+/* 말풍선 */
+.box {
+  padding: 20px;
+}
+.pull {
+  position: fixed;
+  padding: 20px; 
+  width: 110px; 
+  height: 60px;
+  bottom: 100px;
+  color: #FFF; 
+  border-radius: 20px; 
+  background-color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+}
+.pull:after {
+  content:"";
+  position: absolute; 
+  top: 75px; 
+  right: 100px; 
+  border-left: 20px solid #000000; 
+  border-top: 20px solid transparent; 
+  border-bottom: 30px solid transparent;
+}
+
+
 
 @media screen and (max-width: 800px) {
     .left-box {
@@ -183,6 +264,7 @@ footer {
         background-color: rgba(255, 255, 255, 0.85);
         width: calc(100% - 40px);
         height: 60px;
+        z-index: 2;
     }
     .left-box.expanded {
         height: 120px;
@@ -239,12 +321,30 @@ footer {
       transition-delay: 0s;
      }
 
-    footer {
+    .first_footer {
         position: fixed;
-        Margin-top: 5px;
+        margin-top: 5px;
         width: 100%;
         height: 30px;
     } 
+    .second_footer { 
+      position: fixed;
+      width: calc(100% - 40px);
+      bottom: 15px;
+      transform: scale(1.5);
+      margin-left: calc(100% + 30px);
+      z-index: 2;
+    }
+    .pull {
+      left: -190px;
+      margin-left: calc(100% + 30px);
+      bottom: 85px;
+    }
+    .pull:after {
+      transform: rotateY(180deg);
+      
+    }
+
     #Menu {
         display: flex;
         flex-direction: row;
@@ -264,6 +364,7 @@ footer {
         left: 20px;
         Width: calc(100% - 40px);
         height: calc(100% - 190px);
+        z-index: 1;
     }
     #instaLink {
         position: flexible;

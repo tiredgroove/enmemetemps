@@ -71,3 +71,22 @@ document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
   });
 
+///musicplayer
+// const playButton = document.querySelector('.button--play');
+
+// playButton.addEventListener('click', () => {
+//   console.log('yo');
+//   playButton.classList.toggle('button--active');
+// });
+const playButton = document.querySelector('.button--play');
+const audioPlayer = document.querySelector('#audio-player');
+
+playButton.addEventListener('click', () => {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    playButton.classList.add('button--active');
+  } else {
+    audioPlayer.pause();
+    playButton.classList.remove('button--active');
+  }
+});
