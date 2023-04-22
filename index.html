@@ -59,7 +59,6 @@
   precision highp float;
 
   uniform float sineTime;
-
   uniform mat4 modelViewMatrix;
   uniform mat4 projectionMatrix;
 
@@ -73,16 +72,12 @@
   varying vec4 vColor;
 
   void main(){
-
     vPosition = offset * max( abs( sineTime * 5.0 + 1.0 ), 3.0 ) + position; 
     vec4 orientation = normalize( mix( orientationStart, orientationEnd, sineTime ) );
     vec3 vcV = cross( orientation.xyz, vPosition );
     vPosition = vcV * ( 4.0 * orientation.w ) + ( cross( orientation.xyz, vcV ) * 2.0 + vPosition );
-
     vColor = color;
-
     gl_Position = projectionMatrix * modelViewMatrix * vec4( vPosition, 1.0 );
-
   }
 
 </script>
@@ -97,12 +92,9 @@
   varying vec4 vColor;
 
   void main() {
-
     vec4 color = vec4( vColor );
     color.r += sin( vPosition.x * 10.0 + time ) * 0.05;
-
     gl_FragColor = color;
-
   }
 
 </script>
