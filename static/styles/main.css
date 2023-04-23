@@ -116,6 +116,9 @@ span {
     transform: rotateY(90deg);
   }
   
+  span.hidden:nth-of-type(6) {
+    transition-delay: 0.5s;
+  }
   span.hidden:nth-of-type(5) {
     transition-delay: 0.4s;
   }
@@ -213,18 +216,22 @@ body {
 }
 .button--play .button__shape--one {
   -webkit-clip-path: polygon(0 0, 100% 25%, 100% 75%, 0% 100%);
+  clip-path: polygon(0 0, 100% 25%, 100% 75%, 0% 100%);
   transform: translateX(1.5px);
 }
 .button--play .button__shape--two {
   -webkit-clip-path: polygon(0 25%, 100% 50%, 100% 50%, 0 75%);
+  clip-path: polygon(0 25%, 100% 50%, 100% 50%, 0 75%);
   transform: translateX(1.4px);
 }
 .button--play.button--active .button__shape--one {
   -webkit-clip-path: polygon(0 15%, 50% 15%, 50% 85%, 0% 85%);
+  clip-path: polygon(0 15%, 50% 15%, 50% 85%, 0% 85%);
   transform: translateX(0px);
 }
 .button--play.button--active .button__shape--two {
   -webkit-clip-path: polygon(50% 15%, 100% 15%, 100% 85%, 50% 85%);
+  clip-path: polygon(50% 15%, 100% 15%, 100% 85%, 50% 85%);
   transform: translateX(0px);
 }
 
@@ -299,12 +306,11 @@ body {
         transform: rotateY(0deg);
       }
       span.hidden {
-      width: 0;
+      width: 100%;
       visibility: hidden;
       opacity: 0;
-      transform: rotateY(90deg);
+      transform: rotateZ(90deg);
       }
-  
       span.hidden:nth-of-type(1) {
       transition-delay: 0s;
       }
@@ -319,7 +325,10 @@ body {
       }
       span.hidden:nth-of-type(5) {
       transition-delay: 0s;
-     }
+      }
+      span.hidden:nth-of-type(6) {
+        transition-delay: 0s;
+       }
 
     .first_footer {
         position: fixed;

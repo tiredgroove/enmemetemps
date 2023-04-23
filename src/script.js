@@ -38,7 +38,7 @@ function randomColor() {
       Menu03.classList.remove('changecolor');
       Menu03.style.color = '';
   });
-const Menu04 = document.getElementById('Menu04');
+  const Menu04 = document.getElementById('Menu04');
   Menu04.addEventListener("mouseover", function() {
       Menu04.classList.add('changecolor');
       Menu04.style.color = randomColor();
@@ -47,6 +47,17 @@ const Menu04 = document.getElementById('Menu04');
   Menu04.addEventListener("mouseout", function() {
       Menu04.classList.remove('changecolor');
       Menu04.style.color = '';
+  });
+  
+  const Menu05 = document.getElementById('Menu05');
+  Menu05.addEventListener("mouseover", function() {
+      Menu05.classList.add('changecolor');
+      Menu05.style.color = randomColor();
+  });
+
+  Menu05.addEventListener("mouseout", function() {
+      Menu05.classList.remove('changecolor');
+      Menu05.style.color = '';
   });
 
   const instaLink = document.getElementById('instaLink');
