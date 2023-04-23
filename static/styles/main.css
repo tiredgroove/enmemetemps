@@ -97,18 +97,7 @@ span {
     transition: 0.3s;
     transform: rotateY(0deg);
   }
-  /* span:nth-of-type(4) {
-    transition-delay: 0.4s;
-  }
-  span:nth-of-type(3) {
-    transition-delay: 0.5s;
-  }
-  span:nth-of-type(2) {
-    transition-delay: 0.6s;
-  }
-  span:nth-of-type(1) {
-    transition-delay: 0.7s;
-  } */
+  
   span.hidden {
     width: 0;
     visibility: hidden;
@@ -288,15 +277,18 @@ body {
         font-family: Helvetica, sans-serif; 
         font-size: 18px; 
         font-weight: 200;
-        white-space: normal;
-        word-wrap: break-word;
       }
       .middleMenu.close {
         bottom: 0;
-    }
-    .insta_logo {
+      }
+      .insta_logo {
         width: 15px;
-    }
+      }
+      @media (max-width: 480px) {
+        .insta_logo {
+          width: 12px;
+        }
+      }
 
       span {
         position: relative;
@@ -307,6 +299,27 @@ body {
         transition: 0.3s;
         transform: rotateY(0deg);
       }
+      @media (max-width: 480px) {
+        span:nth-of-type(6) {
+          transform: translate(-33px, 25px);
+        }
+        span:nth-of-type(5) {
+          transform: translate(-33px, 25px);
+        }
+        span:nth-of-type(4) {
+          transform: translate(180px, -5px);
+        }
+        span:nth-of-type(3) {
+          transform: translate(180px, -5px);
+        }
+        span:nth-of-type(2) {
+          transform: translate(180px, -5px);
+        }
+        span:nth-of-type(1) {
+          transform: translate(180px, -5px);
+        }
+      }
+
       span.hidden {
       width: 100%;
       visibility: hidden;
@@ -343,8 +356,13 @@ body {
       width: calc(100% - 40px);
       bottom: 15px;
       transform: scale(1.5);
-      margin-left: calc(100% + 30px);
+      margin-left: calc(100% + 50px);
       z-index: 2;
+    }
+    @media (max-width: 480px) {
+      .second_footer {
+      margin-left: calc(100% + 10px);
+      }
     }
     .pull {
       visibility: visible;
@@ -353,6 +371,11 @@ body {
       margin-left: calc(100% + 30px);
       bottom: 50px;
       transform: scale(0.8);
+    }
+    @media (max-width: 480px) {
+      .pull {
+      margin-left: calc(100% + 50px);
+      }
     }
     .pull:after {
       visibility: hidden;
