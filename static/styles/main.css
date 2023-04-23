@@ -253,7 +253,7 @@ body {
 
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
     .left-box {
         position: fixed;
         /* background-color: transparent; */
@@ -301,22 +301,22 @@ body {
       }
       @media (max-width: 480px) {
         span:nth-of-type(6) {
-          transform: translate(-43px, 35px);
+          transform: translate(-43px, 32px);
         }
         span:nth-of-type(5) {
-          transform: translate(-43px, 35px);
+          transform: translate(-43px, 32px);
         }
         span:nth-of-type(4) {
-          transform: translate(137px, 5px);
+          transform: translate(137px, 3px);
         }
         span:nth-of-type(3) {
-          transform: translate(137px, 5px);
+          transform: translate(137px, 3px);
         }
         span:nth-of-type(2) {
-          transform: translate(137px, 5px);
+          transform: translate(137px, 3px);
         }
         span:nth-of-type(1) {
-          transform: translate(137px, 5px);
+          transform: translate(137px, 3px);
         }
       }
 
