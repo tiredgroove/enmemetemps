@@ -288,6 +288,8 @@ body {
         font-family: Helvetica, sans-serif; 
         font-size: 18px; 
         font-weight: 200;
+        white-space: normal;
+        word-wrap: break-word;
       }
       .middleMenu.close {
         bottom: 0;

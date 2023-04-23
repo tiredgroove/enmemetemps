@@ -15,7 +15,15 @@
       margin-top: 30px;
       padding-left: 50px;
     }
-  
+    #imageNtext {
+    display: flex;
+    width: 560px;
+    align-items: top;
+    }
+    text {
+    margin-left: 20px;
+    }
+
     .youtube-video {
       position: absolute;
       width: 560px;
@@ -30,10 +38,15 @@
       z-index: 1;
         }
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 560px) {
       body {
       padding-left: 0;
       padding-right: 0;
+    }
+    #imageNtext {
+      display: flex;
+      width: 100%;
+      justify-content: center;
     }
     .youtube-video {
         display: flex;
@@ -49,10 +62,19 @@
 <body>
 <div></div>
 <br>
+<div id="imageNtext">
+  <img src="img/artworks-projet sonore_mixage final00_500x500.jpg" width="200">
+  <p>Click play button below to litsen to background sound</p>
+</div>
+<br>
 <div class="youtube-video">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/0wHDzcQz744" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
-
+<br>
+<div id="imageNtext">
+  <img src="img/nailmoon.JPG" width="500">
+  <p>in Algeria</p>
+</div>
 <script>
 document.addEventListener('contextmenu', function(e) {
   // prevent right-click menu from appearing
