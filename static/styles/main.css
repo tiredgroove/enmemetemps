@@ -239,7 +239,7 @@ body {
   border-radius: 20px; 
   background-color: #000000;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 12px;
+  font-size: 10px;
 }
 .pull:after {
   content:"";
