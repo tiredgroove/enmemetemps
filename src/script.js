@@ -1,4 +1,3 @@
-
 function randomColor() {
     let color = [];
     for (let i = 0; i < 3; i++) {
@@ -71,24 +70,27 @@ function randomColor() {
       instaLink.style.color = '';
   });
 
-  function loadPage(url) {
+function loadPage(url) {
           document.getElementById("main_page").innerHTML = '<object type="text/html" data="'+url+'" ></object>';
       }
 function loadPage(url) {
           document.getElementById("myFrame").src = url;
+          //visibility
+          if (url.endsWith("01.html")) {
+            document.getElementById("main_page").style.visibility = "hidden";
+          } else {
+            document.getElementById("main_page").style.visibility = "visible";
+          }
+          ////// visibility
       }
+
 document.addEventListener('contextmenu', function(e) {
       // prevent right-click menu from appearing
       e.preventDefault();
   });
 
-///musicplayer
-// const playButton = document.querySelector('.button--play');
+  ////show iframe
 
-// playButton.addEventListener('click', () => {
-//   console.log('yo');
-//   playButton.classList.toggle('button--active');
-// });
 const playButton = document.querySelector('.button--play');
 const audioPlayer = document.querySelector('#audio-player');
 
