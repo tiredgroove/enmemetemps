@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>etc</title>
+	<style>
+		* {
+		  user-select: none;
+		  -webkit-user-select: none; /* Safari */
+		  -moz-user-select: none; /* Firefox */
+		  -ms-user-select: none; /* Internet Explorer/Edge */
+		  -o-user-select: none; /* Opera */
+		}
+		body {
+			background-color: transparent;
+			padding-left: 50px;
+			padding-right: 50px;
+		}
+		h1 {
+			font-size: 18px;
+			font-family: helvetica, sans-serif;
+			font-weight: bold;
+			text-align: left;
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+		p {
+			font-size: 15px;
+			font-family: helvetica, sans-serif;
+			font-weight: 100;
+			text-align: left;
+			margin-top: 0;
+			margin-bottom: 0;
+			max-width: 700px;
+		}
+		
+
+		@media only screen and (max-width: 560px) {
+			body {
+			background-color: transparent;
+			display: flex;
+			padding-left: 0;
+			padding-right: 0;
+			margin-top: 0;
+			}
+			h1 {
+				/* position: fixed; */
+				padding-left: 10px;
+			}
+
+		}
+
+	</style>
+</head>
+<body>
+	<div>
+	<h1>product</h1>
+	<div>
+		<p>
+			Nothing yet here;
+			<br>
+			just enjoy background moving color fragments
+		</p>
+	</div>
+	</div>
+<script>
+document.addEventListener('contextmenu', function(e) {
+			// prevent right-click menu from appearing
+			e.preventDefault();
+		});
+</script>
+</body>
+</html>
