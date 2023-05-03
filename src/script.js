@@ -74,19 +74,13 @@ function loadPage(url) {
     document.getElementById("main_page").innerHTML = '<object type="text/html" data="'+url+'" ></object>';
 }
 function loadPage(url) {
-    document.getElementById("main_page").classList.add("page-transition");
-    setTimeout(function() {
           document.getElementById("myFrame").src = url;
-          ///
-          document.getElementById("main_page").classList.remove("page-transition");
           //visibility
           if (url.endsWith("01.html")) {
             document.getElementById("main_page").style.visibility = "hidden";
           } else {
             document.getElementById("main_page").style.visibility = "visible";
           }
-          ////// visibility
-        }, 500);
       }
 
 document.addEventListener('contextmenu', function(e) {

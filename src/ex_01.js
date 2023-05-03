@@ -128,6 +128,26 @@ const controls = new OrbitControls(camera, renderer.domElement);
 	controls.minPolarAngle = 1;
 	controls.maxPolarAngle = Math.PI / 1.5;
 	controls.update();
+/////// mobile size control
+function setControls() {
+	const controls = new OrbitControls(camera, renderer.domElement);
+	controls.minDistance = 1.5;
+	controls.maxDistance = 4;
+	controls.minPolarAngle = 1;
+	controls.maxPolarAngle = Math.PI / 1.5;
+	controls.update();
+}
+	  
+// call setControls initially
+setControls();
+	  
+// call setControls again whenever the window is resized
+window.addEventListener('resize', function() {
+	if (window.innerWidth < 560) {
+		setControls();
+	}
+});
+/////// mobile size control
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
