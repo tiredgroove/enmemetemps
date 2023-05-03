@@ -140,10 +140,6 @@ span {
     z-index: 1;
     visibility: hidden;
 }
-.page-transition {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
 
 .changecolor {transition: color 0.2s ease;}
 #Menu span a {
