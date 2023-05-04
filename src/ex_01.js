@@ -10,7 +10,7 @@ scene.background = new THREE.Color( 0xffffff );
 	
 //camera
 const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10 );
-camera.position.z = 3;
+camera.position.z = 3.5;
     
 //renderer
 const renderer = new THREE.WebGLRenderer();
@@ -124,14 +124,14 @@ animate();
 //orbitcontrols
 const controls = new OrbitControls(camera, renderer.domElement);
 	controls.minDistance = 1;
-	controls.maxDistance = 5;
+	controls.maxDistance = 5.5;
 	controls.minPolarAngle = 1;
 	controls.maxPolarAngle = Math.PI / 1.5;
 	controls.update();
 /////// mobile size control
 function setControls() {
 	const controls = new OrbitControls(camera, renderer.domElement);
-	controls.minDistance = 1.5;
+	controls.minDistance = 2;
 	controls.maxDistance = 4;
 	controls.minPolarAngle = 1;
 	controls.maxPolarAngle = Math.PI / 1.5;
