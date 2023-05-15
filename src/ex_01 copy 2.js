@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { WEBGL } from './webgl'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 
 if (WEBGL.isWebGLAvailable()) {
 //////
@@ -99,10 +100,16 @@ const material = new THREE.RawShaderMaterial( {
 const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
+function animate() {
+	requestAnimationFrame( animate );
+		
+    render();
+}
+
 function render() {
 	const time = performance.now();
     const object = scene.children[ 0 ];
-	
+		
     object.rotation.y = time * 0.000025;
 	object.rotation.x = time * 0.000025;
 	object.rotation.z = time * 0.000025;
@@ -112,45 +119,42 @@ function render() {
 
     renderer.render( scene, camera );
 }
+animate();
+
+// //orbitcontrols
+// const controls = new OrbitControls(camera, renderer.domElement);
+// controls.minDistance = 1;
+// controls.maxDistance = 5;
+// controls.minPolarAngle = 1;
+// controls.maxPolarAngle = Math.PI / 1.5;
+// controls.update();
+// /////// mobile size control
+// function setControls() {
+// 	const controls = new OrbitControls(camera, renderer.domElement);
+// 	controls.minDistance = 2;
+// 	controls.maxDistance = 4;
+// 	controls.minPolarAngle = 0.8;
+// 	controls.maxPolarAngle = Math.PI / 1.5;
+// 	controls.update();
+// }
+
+// // call setControls initially
+// setControls();
+
+// // call setControls again whenever the window is resized
+// window.addEventListener('resize', function() {
+// 	if (window.innerWidth < 560) {
+// 		setControls();
+// 	}
+// });
+// /////// mobile size control
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 };
-
-/////add mousemove
-let isMoving = false;
-let moveTimeout;
-
-function onPointerMove(event) {
-    // Update the position of the mesh based on the mouse movement
-    const { clientX, clientY } = event;
-    const { innerWidth, innerHeight } = window;
-    const mouseX = (clientX / innerWidth) * 2 - 1;
-    const mouseY = -(clientY / innerHeight) * 2 + 1;
-    // Modify the mesh's position based on the mouse movement
-	camera.position.x += ( - mouseX - camera.position.x ) * 0.05;
-	camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
-
-	camera.lookAt( scene.position );
-
-	isMoving = true;
-
-	// Clear any previous timeout
-	clearTimeout(moveTimeout);
-}
-
 	window.addEventListener( 'resize', onWindowResize );
-	window.addEventListener('mousemove', onPointerMove);
-
-function animate() {
-	requestAnimationFrame( animate );
-			
-	render();
-}
-	
-animate();
 
 } else {
   var warning = WEBGL.getWebGLErrorMessage()
