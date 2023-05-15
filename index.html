@@ -109,7 +109,7 @@
     vec4 color = vec4( vColor );
     color.r += sin( vPosition.x * 10.0 + time ) * 0.05;
     float distance = length(vPosition);
-    float randomFactor = 0.5 + 0.4 * fract(sin(distance) * 43758.5453);
+    float randomFactor = 0.6 + 0.4 * fract(sin(distance) * 43758.5453);
     color.a = randomFactor;
     gl_FragColor = color;
   }
