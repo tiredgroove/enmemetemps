@@ -94,7 +94,7 @@ const material = new THREE.RawShaderMaterial( {
 	fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
 	side: THREE.DoubleSide,
 	forceSinglePass: true,
-	transparent: true
+	transparent: true,
 });
 
 const mesh = new THREE.Mesh( geometry, material );
