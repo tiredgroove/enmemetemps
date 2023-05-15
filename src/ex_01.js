@@ -9,7 +9,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xffffff );
 	
 //camera
-const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10 );
+const camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 camera.position.z = 3;
     
 //renderer
@@ -121,33 +121,33 @@ function render() {
 }
 animate();
 
-//orbitcontrols
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.minDistance = 1;
-controls.maxDistance = 5;
-controls.minPolarAngle = 1;
-controls.maxPolarAngle = Math.PI / 1.5;
-controls.update();
-/////// mobile size control
-function setControls() {
-	const controls = new OrbitControls(camera, renderer.domElement);
-	controls.minDistance = 1;
-	controls.maxDistance = 4;
-	controls.minPolarAngle = 0.8;
-	controls.maxPolarAngle = Math.PI / 1.5;
-	controls.update();
-}
-	  
-// call setControls initially
-setControls();
-	  
-// call setControls again whenever the window is resized
-window.addEventListener('resize', function() {
-	if (window.innerWidth < 560) {
-		setControls();
-	}
-});
-/////// mobile size control
+// //orbitcontrols
+// const controls = new OrbitControls(camera, renderer.domElement);
+// controls.minDistance = 1;
+// controls.maxDistance = 5;
+// controls.minPolarAngle = 1;
+// controls.maxPolarAngle = Math.PI / 1.5;
+// controls.update();
+// /////// mobile size control
+// function setControls() {
+// 	const controls = new OrbitControls(camera, renderer.domElement);
+// 	controls.minDistance = 1.5;
+// 	controls.maxDistance = 4;
+// 	controls.minPolarAngle = 0.8;
+// 	controls.maxPolarAngle = Math.PI / 1.5;
+// 	controls.update();
+// }
+
+// // call setControls initially
+// setControls();
+
+// // call setControls again whenever the window is resized
+// window.addEventListener('resize', function() {
+// 	if (window.innerWidth < 560) {
+// 		setControls();
+// 	}
+// });
+// /////// mobile size control
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
